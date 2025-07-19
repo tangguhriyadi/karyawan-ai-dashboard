@@ -10,9 +10,11 @@ import { ROUTES } from "@/configs/route.config";
 import useAppLayoutStore from "../../../store/app-layout";
 import useLogout from "../../../hooks/useLogout";
 import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import useUserStore from "@/features/user/store/user"
 
 const HeaderInfo: React.FC = () => {
     const { isHideSidebar } = useAppLayoutStore();
+    const { currentUser } = useUserStore()
 
     const logoutHook = useLogout();
 
@@ -44,7 +46,7 @@ const HeaderInfo: React.FC = () => {
                     <>
                         <h5 className="text-sm font-semibold leading-6 text-dark break-all line-clamp-1">
                             {/* {value?.full_name} */}
-                            name
+                            {currentUser?.full_name ?? "-"}
                         </h5>
                         <p>-</p>
                     </>

@@ -1,3 +1,3 @@
 export default function Home() {
-    return <div>ini dashboard</div>;
+    return <div>Karyawan AI Dashboard</div>;
 }

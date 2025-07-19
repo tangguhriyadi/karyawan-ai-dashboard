@@ -13,12 +13,12 @@ interface IMenuConfig {
 }
 
 export const MENU_CONFIG: IMenuConfig[] = [
-    {
-        key: ROUTES.DEFAULT,
-        icon: <ShopOutlined />,
-        label: "Beranda",
-        module: "Dashboard",
-    },
+    // {
+    //     key: ROUTES.DEFAULT,
+    //     icon: <ShopOutlined />,
+    //     label: "Beranda",
+    //     module: "Dashboard",
+    // },
     {
         key: ROUTES.MOOTASI.BASE,
         icon: <ShopOutlined />,

@@ -1,4 +1,5 @@
-import SidebarResponsive from "./sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar";
+import SidebarResponsive from "./sidebar/SidebarResponsive";
 import MainContent from "./content/MainContent";
 import Header from "./header/header";
 
@@ -11,7 +12,7 @@ const MainLayout: React.FC<MainLayoutProps> = async ({ children }) => {
 
     return (
         <div className="min-h-screen flex w-full">
-            <SidebarResponsive />
+            <Sidebar />
             <SidebarResponsive />
             <div className="min-h-0 w-full">
                 <Header />
