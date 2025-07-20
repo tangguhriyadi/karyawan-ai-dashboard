@@ -32,6 +32,7 @@ export default function useRegisterMootasi() {
         mutationKey: ["register-mootasi"],
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["mootasi-license"] });
+            queryClient.invalidateQueries({ queryKey: ["chatbot-link"] });
         },
     });
 }
