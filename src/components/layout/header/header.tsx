@@ -11,7 +11,10 @@ const Header: React.FC = () => {
         <header className="!w-full bg-white flex gap-x-6 items-center justify-between h-[64px] max-h-[64px] px-[15px] z-20 shadow-[0px_2px_30px_rgba(146,153,184,0.063)]">
             <div className="flex w-full relative items-center gap-x-2">
                 <CollapsedTriggerReponseive />
-                <Link href={ROUTES.DEFAULT}>
+                <Link
+                    href={ROUTES.DEFAULT}
+                    className="flex items-center gap-x-3"
+                >
                     {/* <Image
             src="/dashboard-logo.png"
             width={76.69}
@@ -25,6 +28,7 @@ const Header: React.FC = () => {
             className="min-w-[76.69px] !h-[32px]"
           /> */}
                     <Bot className="h-10 w-10 text-blue-600" />
+                    <div className="text-2xl font-bold text-black">Karyawan AI</div>
                 </Link>
                 {/* <CollapsedTrigger /> */}
                 {/* <SearchBar /> */}

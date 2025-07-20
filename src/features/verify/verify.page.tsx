@@ -13,14 +13,20 @@ export default function VerifyPage() {
 
         if (!token) {
             window.location.href = process.env.NEXT_PUBLIC_LANDING_URL ?? "";
-            params.delete("delete");
+            params.delete("token");
+            params.delete("path");
         } else {
             localStorage.setItem(
                 process.env.NEXT_PUBLIC_TOKEN_PROPERTY ?? "",
                 decodeURIComponent(token)
             );
-            params.delete("delete");
-            router.push("/");
+            params.delete("token");
+            if(searchParams.get("path")){
+            router.push("/" + searchParams.get("path"));
+            params.delete("path");
+            } else {
+                router.push("/");
+            }
         }
     }, [searchParams, router]);
     return <div>...</div>;

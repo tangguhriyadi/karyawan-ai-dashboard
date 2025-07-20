@@ -17,25 +17,24 @@ export default function MootasiReceiptsTable() {
             dataIndex: "image_url",
             key: "image_url",
             render: (picture) => {
-             
-              if (!picture) {
+                if (!picture) {
+                    return (
+                        <div className="w-16 h-16 flex items-center justify-center bg-gray-200 rounded-md">
+                            <span className="text-gray-500">No Image</span>
+                        </div>
+                    );
+                }
+
                 return (
-                  <div className="w-16 h-16 flex items-center justify-center bg-gray-200 rounded-md">
-                    <span className="text-gray-500">No Image</span>
-                  </div>
+                    <Image
+                        src={picture}
+                        alt="picture"
+                        className="w-16 h-16 object-cover rounded-md"
+                    />
                 );
-              }
-      
-              return (
-                <Image
-                  src={picture}
-                  alt="picture"
-                  className="w-16 h-16 object-cover rounded-md"
-                />
-              );
             },
             width: 80,
-          },
+        },
         {
             title: "Nomor Nota",
             dataIndex: "number",
@@ -90,7 +89,11 @@ export default function MootasiReceiptsTable() {
 
     return (
         <Table<MootasiReceiptsSchema>
-            dataSource={mootasiReceiptsHooks.data?.data || []}
+            dataSource={
+                mootasiReceiptsHooks.data && mootasiReceiptsHooks.data.data
+                    ? mootasiReceiptsHooks.data.data
+                    : []
+            }
             loading={mootasiReceiptsHooks.isLoading}
             columns={columns}
             // pagination={{

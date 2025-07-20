@@ -21,7 +21,7 @@ export async function getReceipts(org_id?: number): Promise<{
 export default function useMootasiReceiptList(org_id?: number) {
     return useQuery({
         queryFn: () => getReceipts(org_id),
-        queryKey: ["mootasi-receipts"],
+        queryKey: ["mootasi-receipts", org_id],
         enabled: !!org_id,
     });
 }
