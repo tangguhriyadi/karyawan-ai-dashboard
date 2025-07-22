@@ -55,7 +55,7 @@ const MootasiPage = () => {
     if (!data || !data.data) return null;
 
     if (!isVerified)
-        return <MootasiRegisterForm license_id={data.data[0].id} />;
+        return <MootasiRegisterForm license_id={data.data[0]?.id ?? ""} />;
 
     return (
         <div className="flex flex-col gap-y-4">

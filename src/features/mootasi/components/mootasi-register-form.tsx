@@ -39,13 +39,19 @@ const MootasiRegisterForm = ({ license_id }: { license_id: number }) => {
                         Apa itu API Key Telegram ? Simak video berikut:
                     </h4>
 
-                    <video width="100%" controls>
-                        <source
-                            src="/videos/mootasi-tutotial-telegram-api.mp4"
-                            type="video/mp4"
-                        />
-                        Your browser does not support the video tag.
-                    </video>
+                    <div>
+                        <iframe
+                            className="aspect-video"
+                            width="100%"
+                            height="auto"
+                            src="https://www.youtube.com/embed/FD-DB_sjH1o"
+                            title="Tutorial membuat Chatbot Telegram (Mootasi)"
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerPolicy="strict-origin-when-cross-origin"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
 
                     <Button
                         loading={submitHook.isPending}
