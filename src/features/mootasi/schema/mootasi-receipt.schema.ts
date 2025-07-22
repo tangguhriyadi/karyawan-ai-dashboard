@@ -2,7 +2,7 @@ export type MootasiReceiptsSchema = {
     id: string;
     created_at: string;
     supplier: string;
-    recept_date: string;
+    receipt_date: string;
     upload_date: string;
     uploaded_by: string;
     subtotal: number;
