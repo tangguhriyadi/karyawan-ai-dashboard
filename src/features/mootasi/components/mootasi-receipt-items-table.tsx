@@ -4,6 +4,7 @@ import { Table, TableProps } from "antd";
 import useMootasiReceiptItemList from "../hooks/use-mootasi-receipt-items-list";
 import { MootasiReceiptItemsSchema } from "../schema/mootasi-receipt-items.schema";
 import useOrganizationStore from "../../../store/organization";
+import { formatToRupiah } from "../../../utils/currency";
 
 export default function MootasiReceiptItemsTable() {
     const { selectedOrganization } = useOrganizationStore();
@@ -26,63 +27,80 @@ export default function MootasiReceiptItemsTable() {
             title: "Harga",
             dataIndex: "price",
             key: "price",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Qty",
             dataIndex: "quantity",
             key: "quantity",
+            align: "center",
         },
         {
             title: "Satuan",
             dataIndex: "unit",
             key: "unit",
+            align: "center",
         },
         {
             title: "Subtotal",
             dataIndex: "subtotal",
             key: "subtotal",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Service",
             dataIndex: "service",
             key: "service",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "PPN",
             dataIndex: "ppn",
             key: "ppn",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Tax",
             dataIndex: "tax",
             key: "tax",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
-            title: "Dicount",
+            title: "Discount",
             dataIndex: "discount",
             key: "discount",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Total",
             dataIndex: "total",
             key: "total",
+            render: (value) => (
+                <span className="font-semibold text-green-600">
+                    {formatToRupiah(value)}
+                </span>
+            ),
+            align: "right",
         },
     ];
 
     return (
-        <Table<MootasiReceiptItemsSchema>
-            dataSource={mootasiReceiptItemsHooks.data?.data || []}
-            loading={mootasiReceiptItemsHooks.isLoading}
-            columns={columns}
-            // pagination={{
-            //     pageSize: queryParams.limit,
-            //     current: data?.data.data.current_page,
-            //     total: data?.data.data.total_records,
-            //     onChange: (page) =>
-            //         setQueryParams((prev) => ({ ...prev, page })),
-            // }}
-            pagination={false}
-            rowKey={(row) => row.id}
-        />
+        <div className="w-full">
+            <div className="overflow-x-auto bg-white rounded-lg shadow">
+                <Table<MootasiReceiptItemsSchema>
+                    dataSource={mootasiReceiptItemsHooks.data?.data || []}
+                    loading={mootasiReceiptItemsHooks.isLoading}
+                    columns={columns}
+                    pagination={false}
+                    rowKey={(row) => row.id}
+                />
+            </div>
+        </div>
     );
 }

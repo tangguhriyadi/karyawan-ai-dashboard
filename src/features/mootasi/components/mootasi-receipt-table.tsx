@@ -4,6 +4,7 @@ import { Table, TableProps, Image } from "antd";
 import useOrganizationStore from "../../../store/organization";
 import { MootasiReceiptsSchema } from "../schema/mootasi-receipt.schema";
 import useMootasiReceiptList from "../hooks/use-mootasi-receipt-list";
+import { formatToRupiah } from "../../../utils/currency";
 
 export default function MootasiReceiptsTable() {
     const { selectedOrganization } = useOrganizationStore();
@@ -59,52 +60,65 @@ export default function MootasiReceiptsTable() {
             title: "Subtotal",
             dataIndex: "subtotal",
             key: "subtotal",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Service",
             dataIndex: "service",
             key: "service",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "PPN",
             dataIndex: "ppn",
             key: "ppn",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Tax",
             dataIndex: "tax",
             key: "tax",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
-            title: "Dicount",
+            title: "Discount",
             dataIndex: "discount",
             key: "discount",
+            render: (value) => formatToRupiah(value),
+            align: "right",
         },
         {
             title: "Total",
             dataIndex: "total",
             key: "total",
+            render: (value) => (
+                <span className="font-semibold text-green-600">
+                    {formatToRupiah(value)}
+                </span>
+            ),
+            align: "right",
         },
     ];
 
     return (
-        <Table<MootasiReceiptsSchema>
-            dataSource={
-                mootasiReceiptsHooks.data && mootasiReceiptsHooks.data.data
-                    ? mootasiReceiptsHooks.data.data
-                    : []
-            }
-            loading={mootasiReceiptsHooks.isLoading}
-            columns={columns}
-            // pagination={{
-            //     pageSize: queryParams.limit,
-            //     current: data?.data.data.current_page,
-            //     total: data?.data.data.total_records,
-            //     onChange: (page) =>
-            //         setQueryParams((prev) => ({ ...prev, page })),
-            // }}
-            pagination={false}
-            rowKey={(row) => row.id}
-        />
+        <div className="w-full">
+            <div className="overflow-x-auto bg-white rounded-lg shadow">
+                <Table<MootasiReceiptsSchema>
+                    dataSource={
+                        mootasiReceiptsHooks.data && mootasiReceiptsHooks.data.data
+                            ? mootasiReceiptsHooks.data.data
+                            : []
+                    }
+                    loading={mootasiReceiptsHooks.isLoading}
+                    columns={columns}
+                    pagination={false}
+                    rowKey={(row) => row.id}
+                />
+            </div>
+        </div>
     );
 }
