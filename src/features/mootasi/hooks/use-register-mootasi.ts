@@ -1,6 +1,7 @@
 "use client";
 import axios from "axios";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useNotificationBar } from "../../../providers/NotificationProvider";
 
 const api = async (body: {
     license_id: number;
@@ -27,12 +28,21 @@ const api = async (body: {
 
 export default function useRegisterMootasi() {
     const queryClient = useQueryClient();
+    const { openNotificationBar } = useNotificationBar();
     return useMutation({
         mutationFn: api,
         mutationKey: ["register-mootasi"],
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ["mootasi-license"] });
             queryClient.invalidateQueries({ queryKey: ["chatbot-link"] });
+        },
+        //eslint-disable-next-line
+        onError: (err: any) => {
+            openNotificationBar({
+                type: "error",
+                title: "Gagal",
+                message: err.response.data.message || "Terjadi Kesalahan",
+            });
         },
     });
 }

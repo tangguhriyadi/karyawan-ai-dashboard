@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, TableProps, Image, Tag, Tooltip, Space, Typography } from "antd";
+import { Table, TableProps, Image, Tag,  Typography } from "antd";
 import { EyeOutlined, CalendarOutlined, ShopOutlined } from "@ant-design/icons";
 import useOrganizationStore from "../../../store/organization";
 import { MootasiReceiptsSchema } from "../schema/mootasi-receipt.schema";
@@ -22,7 +22,7 @@ export default function MootasiReceiptsTable() {
             dataIndex: "image_url",
             key: "image_url",
             width: 100,
-            render: (picture, record) => {
+            render: (picture) => {
                 if (!picture) {
                     return (
                         <div className="w-20 h-20 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl border-2 border-dashed border-gray-300">
