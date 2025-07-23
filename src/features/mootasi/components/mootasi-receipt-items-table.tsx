@@ -74,7 +74,7 @@ export default function MootasiReceiptItemsTable() {
             title: "Discount",
             dataIndex: "discount",
             key: "discount",
-            render: (value) => formatToRupiah(value),
+            render: (value) => "(" + formatToRupiah(value) + ")",
             align: "right",
         },
         {

@@ -134,7 +134,7 @@ export default function MootasiReceiptsTable() {
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">Discount:</Text>
                         <Text className="text-sm text-red-600">
-                            -{formatToRupiah(record.discount)}
+                            ({formatToRupiah(record.discount)})
                         </Text>
                     </div>
                 </div>
