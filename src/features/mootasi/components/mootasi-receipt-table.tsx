@@ -1,6 +1,6 @@
 "use client";
 
-import { Table, TableProps, Image, Tag,  Typography } from "antd";
+import { Table, TableProps, Image, Tag, Typography } from "antd";
 import { EyeOutlined, CalendarOutlined, ShopOutlined } from "@ant-design/icons";
 import useOrganizationStore from "../../../store/organization";
 import { MootasiReceiptsSchema } from "../schema/mootasi-receipt.schema";
@@ -42,7 +42,7 @@ export default function MootasiReceiptsTable() {
                                     <div className="flex items-center justify-center">
                                         <EyeOutlined className="text-white text-lg" />
                                     </div>
-                                )
+                                ),
                             }}
                         />
                     </div>
@@ -100,15 +100,21 @@ export default function MootasiReceiptsTable() {
                 <div className="space-y-1">
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">Subtotal:</Text>
-                        <Text className="text-sm font-medium">{formatToRupiah(record.subtotal)}</Text>
+                        <Text className="text-sm font-medium">
+                            {formatToRupiah(record.subtotal)}
+                        </Text>
                     </div>
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">Service:</Text>
-                        <Text className="text-sm">{formatToRupiah(record.service)}</Text>
+                        <Text className="text-sm">
+                            {formatToRupiah(record.service)}
+                        </Text>
                     </div>
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">PPN:</Text>
-                        <Text className="text-sm">{formatToRupiah(record.ppn)}</Text>
+                        <Text className="text-sm">
+                            {formatToRupiah(record.ppn)}
+                        </Text>
                     </div>
                 </div>
             ),
@@ -121,11 +127,15 @@ export default function MootasiReceiptsTable() {
                 <div className="space-y-1">
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">Tax:</Text>
-                        <Text className="text-sm">{formatToRupiah(record.tax)}</Text>
+                        <Text className="text-sm">
+                            {formatToRupiah(record.tax)}
+                        </Text>
                     </div>
                     <div className="flex justify-between">
                         <Text className="text-sm text-gray-600">Discount:</Text>
-                        <Text className="text-sm text-red-600">-{formatToRupiah(record.discount)}</Text>
+                        <Text className="text-sm text-red-600">
+                            -{formatToRupiah(record.discount)}
+                        </Text>
                     </div>
                 </div>
             ),
@@ -170,7 +180,8 @@ export default function MootasiReceiptsTable() {
             <div className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
                 <Table<MootasiReceiptsSchema>
                     dataSource={
-                        mootasiReceiptsHooks.data && mootasiReceiptsHooks.data.data
+                        mootasiReceiptsHooks.data &&
+                        mootasiReceiptsHooks.data.data
                             ? mootasiReceiptsHooks.data.data
                             : []
                     }
@@ -181,15 +192,21 @@ export default function MootasiReceiptsTable() {
                     scroll={{ x: 1200 }}
                     className="custom-table"
                     rowClassName={(record, index) =>
-                        `${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'} hover:bg-blue-50 transition-colors duration-200`
+                        `${
+                            index % 2 === 0 ? "bg-gray-50" : "bg-white"
+                        } hover:bg-blue-50 transition-colors duration-200`
                     }
                     locale={{
                         emptyText: (
                             <div className="py-12 text-center">
-                                <div className="text-gray-400 text-lg mb-2">📄</div>
-                                <Text className="text-gray-500">Belum ada data nota</Text>
+                                <div className="text-gray-400 text-lg mb-2">
+                                    📄
+                                </div>
+                                <Text className="text-gray-500">
+                                    Belum ada data nota
+                                </Text>
                             </div>
-                        )
+                        ),
                     }}
                 />
             </div>

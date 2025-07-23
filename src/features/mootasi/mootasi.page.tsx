@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { Radio, Spin, Typography, Button } from "antd";
 import MootasiReceiptItemsTable from "./components/mootasi-receipt-items-table";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import MootasiReceiptsTable from "./components/mootasi-receipt-table";
 import useVerifyMootasiLicense from "./hooks/use-verify-mootasi-license";
 import useMootasiChatbotLink from "./hooks/use-mootasi-chatbot-link";
-import { WechatOutlined } from "@ant-design/icons";
+import { DownloadOutlined, WechatOutlined } from "@ant-design/icons";
 import MootasiRegisterForm from "./components/mootasi-register-form";
+import { useNotificationBar } from "../../providers/NotificationProvider";
+import useDownloadExcelReceiptItems from "./hooks/use-download-excel";
+import useOrganizationStore from "../../store/organization";
 
 const MootasiPage = () => {
     const [mode, setMode] = useState<string>("items");
@@ -16,6 +19,7 @@ const MootasiPage = () => {
     const [isExpired, setIsExpired] = useState<boolean>(false);
     const [isUnpaid, setIsUnpaid] = useState<boolean>(false);
     const { data, isLoading } = useVerifyMootasiLicense();
+    const { selectedOrganization } = useOrganizationStore();
 
     useEffect(() => {
         if (data && data.data) {
@@ -43,6 +47,48 @@ const MootasiPage = () => {
     const chatbotLinkHook = useMootasiChatbotLink(
         data && data.data && data.data.length > 0 ? data.data[0].id : undefined
     );
+
+    const { openNotificationBar } = useNotificationBar();
+
+    const downloadDetailHook = useDownloadExcelReceiptItems();
+
+    const handleClickDownloadDetail = useCallback(async () => {
+        try {
+            const data = await downloadDetailHook.mutateAsync({
+                org_id: selectedOrganization?.id ?? 0,
+            });
+
+            if (data) {
+                // Extract file name from Content-Disposition header
+                const contentDisposition =
+                    data.headers?.["content-disposition"];
+                let fileName = "file.xlsx"; // Fallback name
+
+                if (contentDisposition) {
+                    const [, matchedFileName] =
+                        /filename=([^;]+)/.exec(contentDisposition) || [];
+                    if (matchedFileName) {
+                        fileName = matchedFileName; // Use the destructured match
+                    }
+                }
+
+                // Create a blob and download the file
+                const url = window.URL.createObjectURL(new Blob([data.data]));
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", fileName);
+                document.body.appendChild(link);
+                link.click();
+                link.parentNode?.removeChild(link);
+            }
+        } catch {
+            openNotificationBar({
+                title: "Gagal",
+                type: "error",
+                message: "Gagal mengunduh file",
+            });
+        }
+    }, [downloadDetailHook, selectedOrganization, openNotificationBar]);
 
     if (isLoading)
         return (
@@ -82,7 +128,7 @@ const MootasiPage = () => {
                         </Link>
                     )}
             </div>
-            <div className="overflow-x-auto scrollbar-hide">
+            <div className="flex flex-col xl:flex-row items-center justify-between">
                 <Radio.Group
                     value={mode}
                     buttonStyle="solid"
@@ -105,6 +151,12 @@ const MootasiPage = () => {
                         Item
                     </Radio.Button>
                 </Radio.Group>
+                <Button
+                    onClick={handleClickDownloadDetail}
+                    icon={<DownloadOutlined />}
+                >
+                    Download
+                </Button>
             </div>
             {
                 <>

@@ -53,6 +53,13 @@ const MootasiRegisterForm = ({ license_id }: { license_id: number }) => {
                         ></iframe>
                     </div>
 
+                    <div className="text-xl mb-2">
+                        Butuh bantuan?{" "}
+                        <a target="_blank" href="https://wa.me/6285183033877">
+                            Klik disini
+                        </a>
+                    </div>
+
                     <Button
                         loading={submitHook.isPending}
                         disabled={value.length === 0}
