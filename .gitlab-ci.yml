@@ -1,0 +1,12 @@
+default:
+  image: node:20-alpine
+
+deploy_production:
+  stage: deploy
+  only:
+    - main
+  script:
+    - npm install --global vercel
+    - vercel pull --yes --environment=production --token=$VERCEL_TOKEN_PRODUCTION
+    - vercel build --prod --token=$VERCEL_TOKEN_PRODUCTION
+    - vercel deploy --prebuilt --prod --token=$VERCEL_TOKEN_PRODUCTION
