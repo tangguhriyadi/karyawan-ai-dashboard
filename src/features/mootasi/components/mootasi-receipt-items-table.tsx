@@ -27,7 +27,19 @@ export default function MootasiReceiptItemsTable() {
             title: "Harga",
             dataIndex: "price",
             key: "price",
-            render: (value) => formatToRupiah(value),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
@@ -46,46 +58,114 @@ export default function MootasiReceiptItemsTable() {
             title: "Subtotal",
             dataIndex: "subtotal",
             key: "subtotal",
-            render: (value) => formatToRupiah(value),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
             title: "Service",
             dataIndex: "service",
             key: "service",
-            render: (value) => formatToRupiah(value),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
             title: "PPN",
             dataIndex: "ppn",
             key: "ppn",
-            render: (value) => formatToRupiah(value),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
             title: "Tax",
             dataIndex: "tax",
             key: "tax",
-            render: (value) => formatToRupiah(value),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
             title: "Discount",
             dataIndex: "discount",
             key: "discount",
-            render: (value) => "(" + formatToRupiah(value) + ")",
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
         {
             title: "Total",
             dataIndex: "total",
             key: "total",
-            render: (value) => (
-                <span className="font-semibold text-green-600">
-                    {formatToRupiah(value)}
-                </span>
-            ),
+            render: (value) => {
+                if (!value || value <= 0) return "-";
+                const splitted = formatToRupiah(value, false);
+
+                return (
+                    <div className="w-full flex justify-between text-success-50 font-semibold">
+                        <div>Rp</div>
+                        <div className="text-right">
+                            {value > 0 ? splitted : "-"}
+                        </div>
+                    </div>
+                );
+            },
             align: "right",
         },
     ];
