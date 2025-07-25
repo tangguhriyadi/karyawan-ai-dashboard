@@ -5,7 +5,7 @@ export const theme: ThemeConfig = {
   token: {
     colorPrimary: COLORS.primary.DEFAULT,
     colorBgLayout: "#fff",
-    fontFamily: "Manrope, sans-serif",
+    fontFamily: "Inter, sans-serif",
     colorSuccess: COLORS.success.DEFAULT,
     colorSuccessHover: COLORS.success.hover,
     colorError: COLORS.error.DEFAULT,

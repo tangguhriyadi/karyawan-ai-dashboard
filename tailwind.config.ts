@@ -185,7 +185,7 @@ export default {
         "gray-body": "#1B2C5908",
       },
       fontFamily: {
-        sans: ["Manrope", "sans-serif"],
+        sans: ["sans-serif"],
       },
       fontSize: {
         base: "14px",
